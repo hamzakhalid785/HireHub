@@ -78,11 +78,11 @@ api.interceptors.response.use(
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/auth/token/refresh/",
-        {
-          refresh: refreshToken,
-        }
-      );
+  "https://clever-unity-production-ffc7.up.railway.app/api/auth/token/refresh/",
+  {
+    refresh: refreshToken,
+  }
+);
 
       const newAccessToken = response.data.access;
 
