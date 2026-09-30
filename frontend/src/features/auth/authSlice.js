@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
       return response.data;
     } catch (error) {
       return rejectWithValue(
-        error.response?.data || "Registration failed."
+        error.response?.data || error.message || "Registration failed."
       );
     }
   }
