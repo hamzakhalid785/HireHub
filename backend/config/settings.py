@@ -45,7 +45,11 @@ SECRET_KEY = 'django-insecure-(*6ugwxd$pwzi&=@jbj6&f954e=jq*g(ez@fl14z-wo!fm6bv+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "clever-unity-production-ffc7.up.railway.app",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
