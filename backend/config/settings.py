@@ -13,36 +13,17 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-    ),
-    "DEFAULT_PAGINATION_CLASS": (
-        "rest_framework.pagination.PageNumberPagination"
-    ),
-    "PAGE_SIZE": 10,
-}
-
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "ROTATE_REFRESH_TOKENS": False,
-}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
+# ---------------------------------------------------------
+# Security
+# ---------------------------------------------------------
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-(*6ugwxd$pwzi&=@jbj6&f954e=jq*g(ez@fl14z-wo!fm6bv+'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -52,7 +33,9 @@ ALLOWED_HOSTS = [
 ]
 
 
-# Application definition
+# ---------------------------------------------------------
+# Applications
+# ---------------------------------------------------------
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,16 +55,28 @@ INSTALLED_APPS = [
     'notifications',
 ]
 
+
+# ---------------------------------------------------------
+# Middleware
+# ---------------------------------------------------------
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
     'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+# ---------------------------------------------------------
+# Django
+# ---------------------------------------------------------
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -105,8 +100,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+# ---------------------------------------------------------
 # Database
-# https://docs.djangoproject.com/en/6.1/ref/settings/#databases
+# ---------------------------------------------------------
 
 DATABASES = {
     'default': {
@@ -116,8 +112,38 @@ DATABASES = {
 }
 
 
+# ---------------------------------------------------------
+# Django REST Framework
+# ---------------------------------------------------------
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
+    "DEFAULT_PAGINATION_CLASS": (
+        "rest_framework.pagination.PageNumberPagination"
+    ),
+    "PAGE_SIZE": 10,
+}
+
+
+# ---------------------------------------------------------
+# JWT
+# ---------------------------------------------------------
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+}
+
+
+# ---------------------------------------------------------
 # Password validation
-# https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
+# ---------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -135,8 +161,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# ---------------------------------------------------------
 # Internationalization
-# https://docs.djangoproject.com/en/6.1/topics/i18n/
+# ---------------------------------------------------------
 
 LANGUAGE_CODE = 'en-us'
 
@@ -147,14 +174,16 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.1/howto/static-files/
+# ---------------------------------------------------------
+# Static files
+# ---------------------------------------------------------
 
 STATIC_URL = 'static/'
 
 
+# ---------------------------------------------------------
 # Email
-# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
+# ---------------------------------------------------------
 
 MAILERS = {
     'default': {
@@ -162,7 +191,17 @@ MAILERS = {
     },
 }
 
-CORS_ALLOWED_ORIGINS = True
+
+# ---------------------------------------------------------
+# CORS
+# ---------------------------------------------------------
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+# ---------------------------------------------------------
+# Media
+# ---------------------------------------------------------
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
