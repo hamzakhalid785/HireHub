@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://clever-unity-production-ffc7.up.railway.app/api",
+  baseURL: "https://clever-unity-production-ffc7.up.railway.app/api/",
   headers: {
     "Content-Type": "application/json",
   },
